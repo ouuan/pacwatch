@@ -133,32 +133,29 @@ if __name__ == "__main__":
 
     oldVersion = {}
     for line in pacman('-Q', False).split('\n'):
-        try:
-            pkgName, pkgVer = line.split(' ')
-            oldVersion[pkgName] = pkgVer
-        except:
-            pass
+        if len(line) <= 1:
+            continue
+        pkgName, pkgVer = line.split(' ')
+        oldVersion[pkgName] = pkgVer
 
     newVersion = {}
     groupOfPkg = {}
     for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
-        try:
-            pkgName, pkgVer = line.split(' ')
-            newVersion[pkgName] = pkgVer
-            groupOfPkg[pkgName] = getGroup(oldVersion[pkgName], pkgVer)
-        except:
-            pass
+        if len(line) <= 1:
+            continue
+        pkgName, pkgVer = line.split(' ')
+        newVersion[pkgName] = pkgVer
+        groupOfPkg[pkgName] = getGroup(oldVersion[pkgName], pkgVer)
 
     showed = {}
 
     for rule in settings['verbose']['extra']:
         for package in rule['packages']:
-            try:
-                if groupOfPkg[package] in rule['groups']:
-                    showPackage(
-                        package, oldVersion[package], newVersion[package], True, showed)
-            except:
-                pass
+            if package not in groupOfPkg:
+                continue
+            if groupOfPkg[package] in rule['groups']:
+                showPackage(
+                    package, oldVersion[package], newVersion[package], True, showed)
 
     packagesOfGroup = {}
     for group in settings['groups']:
