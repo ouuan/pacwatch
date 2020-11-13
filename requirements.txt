@@ -1,0 +1,3 @@
+pyaml~=20.4
+termcolor~=1.1
+appdirs~=1.4
