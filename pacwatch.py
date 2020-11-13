@@ -26,7 +26,7 @@ from termcolor import colored
 from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 settingsFile = Path(user_config_dir(appname=__prog__)) / 'settings.yml'
 
@@ -115,19 +115,26 @@ if __name__ == "__main__":
         description=f'{__prog__} is a utility which helps you watch important package updates in the pacman package manager. Source code at https://github.com/ouuan/pacwatch.')
     parser.add_argument('--reset', action='store_true',
                         help='reset settings to default')
-    parser.add_argument('--version', action='version',
+    parser.add_argument('-e', '--edit', action='store_true',
+                        help='edit the settings in $EDITOR')
+    parser.add_argument('-v', '--version', action='version',
                         version=f'%(prog)s {__version__}')
     parserResult = parser.parse_args()
 
     if parserResult.reset:
         saveSettings()
-        quit()
+    else:
+        try:
+            with settingsFile.open() as f:
+                settings = yaml.safe_load(f)
+        except FileNotFoundError:
+            saveSettings()
 
-    try:
-        with settingsFile.open() as f:
-            settings = yaml.safe_load(f)
-    except FileNotFoundError:
-        saveSettings()
+    if parserResult.edit:
+        subprocess.run(f'{os.getenv("EDITOR")} {settingsFile}', shell=True)
+
+    if parserResult.reset or parserResult.edit:
+        quit()
 
     pacman('-Sy', True)
 

@@ -8,7 +8,12 @@
 
 Simply run `python pacwatch.py`.
 
-Or you can run `python pacwatch --reset` to reset to the default settings.
+### Arguments
+
+-   `-h, --help`: how this help message and exit
+-   `--reset`: reset settings to default
+-   `-e, --edit`: edit the settings in `$EDITOR`
+-   `-v, --version`: show program's version number and exit
 
 ## Settings
 
