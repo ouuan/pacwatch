@@ -43,7 +43,7 @@ groups: # groups of package version changes, the output will be in the same orde
   - identifier
   - pkgrel
 rules: # rules to determine the group of a package change, choose the first matching rule
-  - regex: (?:(\d+):)?(\d+)\.(\d+)\.(\d+)(.*)-(\d+) # each capture group of the regex is a part of the version
+  - regex: (?:(\d+):)?(\d+)\.(\d+)\.(\d+)(.*)-([^-]+) # each capture group of the regex is a part of the version
     parts: # the group of each part
       - epoch
       - major
@@ -51,17 +51,18 @@ rules: # rules to determine the group of a package change, choose the first matc
       - patch
       - identifier
       - pkgrel
-  - regex: (?:(\d+):)?(\d+)\.(\d+)(.*)-(\d+)
+  - regex: (?:(\d+):)?(\d+)\.(\d+)(.*)-([^-]+)
     parts:
       - epoch
       - major-two
       - minor-two
       - identifier
       - pkgrel
-  - regex: (?:(\d+):)?(\d+)-(\d+)
+  - regex: (?:(\d+):)?(\w+)(.*)-([^-]+)
     parts:
       - epoch
       - single
+      - identifier
       - pkgrel
 verbose: # the rules which determines which packages to be highlighted, checked one by one from top to bottom
   - packages: # these packages match this rule

@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Update the default settings to identify more version tags.
+
 ## 0.4.1
 
 Fix the error when there's no available update.

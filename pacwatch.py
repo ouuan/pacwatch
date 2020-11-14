@@ -48,16 +48,16 @@ settings = {
     ],
     'rules': [
         {
-            'regex': r'(?:(\d+):)?(\d+)\.(\d+)\.(\d+)(.*)-(\d+)',
+            'regex': r'(?:(\d+):)?(\d+)\.(\d+)\.(\d+)(.*)-([^-]+)',
             'parts': ['epoch', 'major', 'minor', 'patch', 'identifier', 'pkgrel']
         },
         {
-            'regex': r'(?:(\d+):)?(\d+)\.(\d+)(.*)-(\d+)',
+            'regex': r'(?:(\d+):)?(\d+)\.(\d+)(.*)-([^-]+)',
             'parts': ['epoch', 'major-two', 'minor-two', 'identifier', 'pkgrel']
         },
         {
-            'regex': r'(?:(\d+):)?(\d+)-(\d+)',
-            'parts': ['epoch', 'single', 'pkgrel']
+            'regex': r'(?:(\d+):)?(\w+)(.*)-([^-]+)',
+            'parts': ['epoch', 'single', 'identifier', 'pkgrel']
         }
     ],
     'verbose': [
