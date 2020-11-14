@@ -1,0 +1,11 @@
+:: Some packages should be upgraded first...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) archlinux-keyring-20201028-1  manjaro-keyring-20201030-1  manjaro-system-20201014-1
+
+Total Download Size:   1.05 MiB
+Total Installed Size:  1.46 MiB
+Net Upgrade Size:      0.01 MiB
+
+

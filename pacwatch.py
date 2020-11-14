@@ -158,7 +158,9 @@ def isVerbose(name, group):
     return False
 
 
-if __name__ == "__main__":
+def main():
+    global settings
+
     parser = argparse.ArgumentParser(
         prog=__prog__,
         description=f'{__prog__} is a pacman wrapper which helps you watch important package updates. Source code at {__url__}.')
@@ -229,3 +231,7 @@ If you want to keep the current settings, you can refer to {__url__} and run {co
             print()
 
     pacman('-Su', True, False, False)
+
+
+if __name__ == "__main__":
+    main()
