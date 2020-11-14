@@ -1,0 +1,54 @@
+name: "Release AUR"
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  aur:
+    name: "Release AUR"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ouuan'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Update files
+        id: update-files
+        run: |
+          mv aur pacwatch
+          sed -i "s/%version%/${GITHUB_REF/refs\/tags\//}/g" pacwatch/PKGBUILD pacwatch/.SRCINFO
+          sed -i "s/%sha256sums%/$(shasum -a256 pacwatch.py | cut -d' ' -f1)/g" pacwatch/PKGBUILD pacwatch/.SRCINFO
+
+      - name: Check PKGBUILD
+        uses: 2m/arch-pkgbuild-builder@v1.16
+        with:
+          target: "pkgbuild"
+          pkgname: "pacwatch"
+
+      - name: "Check .SRCINFO"
+        uses: 2m/arch-pkgbuild-builder@v1.16
+        with:
+          target: "srcinfo"
+          pkgname: "pacwatch"
+
+      - name: Clone AUR and update
+        run: |
+          git clone ssh://aur@aur.archlinux.org/pacwatch.git ../aur
+          rm ../aur/* || true
+          cp pacwatch/PKGBUILD pacwatch/.SRCINFO ../aur
+          cd ../aur
+          git config user.name "Yufan You"
+          git config user.email "ouuansteve@gmail.com"
+          git add -A
+          git diff-index @ --exit-code --quiet || git commit -m "Update from GitHub Actions: ${GITHUB_REF/refs\/tags\//}
+          https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
+          git push
