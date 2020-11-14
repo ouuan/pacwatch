@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
     for group, packages in packagesOfGroup.items():
         if len(packages) > 0:
-            if not group:
+            if group == None:
                 group = 'unknown'
             print(f'{colored(f"{group} ({len(packages)})", "magenta")}', end=' ')
             for package in packages:
