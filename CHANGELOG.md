@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 0.3.2
+
 Change `$pkgver-pacwatch.py` to `pacwatch-$pkgver.py`.
 
 ## 0.3.1
