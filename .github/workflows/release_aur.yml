@@ -21,6 +21,15 @@ jobs:
           name: id_rsa
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - run: "pip install -r requirements.txt"
+
+      - name: Check version
+        run: '[[ $(python pacwatch.py --version) == "pacwatch ${GITHUB_REF/refs\/tags\//}" ]]'
+
       - name: Update files
         id: update-files
         run: |
@@ -34,11 +43,18 @@ jobs:
           target: "pkgbuild"
           pkgname: "pacwatch"
 
-      - name: "Check .SRCINFO"
+      - name: Check .SRCINFO
         uses: 2m/arch-pkgbuild-builder@v1.16
         with:
           target: "srcinfo"
           pkgname: "pacwatch"
+
+      - name: Run pacwatch
+        uses: 2m/arch-pkgbuild-builder@v1.16
+        with:
+          target: "run"
+          pkgname: "pacwatch"
+          command: "pacwatch"
 
       - name: Clone AUR and update
         run: |

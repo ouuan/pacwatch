@@ -1,11 +1,11 @@
-## 0.2.1
+## 0.2.2
 
-### Added
+Fixed the version number.
+
+## 0.2.1
 
 Release on AUR.
 
 ## 0.2.0
-
-### Added
 
 Use `--edit` to edit the settings.
