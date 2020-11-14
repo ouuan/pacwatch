@@ -26,7 +26,7 @@ from termcolor import colored
 from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 settingsFile = Path(user_config_dir(appname=__prog__)) / 'settings.yml'
 

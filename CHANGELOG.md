@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 0.3.1
+
 Specify pkgver in the source file name in PKGBUILD to make it unique.
 
 ## 0.3.0
