@@ -71,7 +71,9 @@ verbose: # highlight some version changes at top, one package per line with the 
     - packages: # the pacakges of a verbose rule
         - linux
         - linux-lts
-      groups: # if the changes of the packages are in these groups, use verbose output
-        - minor
-        - patch
+      always: true # always use verbose output for these packages
+    - packages:
+        - systemd
+      groups:
+        - minor-two # if the changes of the packages are in these groups, use verbose output
 ```

@@ -62,7 +62,11 @@ settings = {
         'extra': [
             {
                 'packages': ['linux', 'linux-lts'],
-                'groups': ['minor', 'patch']
+                'always': True
+            },
+            {
+                'packages': ['systemd'],
+                'groups': ['minor-two']
             }
         ]
     }
@@ -156,13 +160,14 @@ if __name__ == "__main__":
 
     showed = {}
 
-    for rule in settings['verbose']['extra']:
-        for package in rule['packages']:
-            if package not in groupOfPkg:
-                continue
-            if groupOfPkg[package] in rule['groups']:
-                showPackage(
-                    package, oldVersion[package], newVersion[package], True, showed)
+    if 'verbose' in settings and 'extra' in settings['verbose']:
+        for rule in settings['verbose']['extra']:
+            for package in rule['packages']:
+                if package not in groupOfPkg:
+                    continue
+                if ('always' in rule and rule['always']) or ('groups' in rule and groupOfPkg[package] in rule['groups']):
+                    showPackage(
+                        package, oldVersion[package], newVersion[package], True, showed)
 
     packagesOfGroup = {}
     for group in settings['groups']:
@@ -176,11 +181,12 @@ if __name__ == "__main__":
     for packages in packagesOfGroup.values():
         packages.sort()
 
-    for group in settings['verbose']['groups']:
-        for package in packagesOfGroup[group]:
-            showPackage(
-                package, oldVersion[package], newVersion[package], True, showed)
-        packagesOfGroup.pop(group)
+    if 'verbose' in settings and 'groups' in settings['verbose']:
+        for group in settings['verbose']['groups']:
+            for package in packagesOfGroup[group]:
+                showPackage(
+                    package, oldVersion[package], newVersion[package], True, showed)
+            packagesOfGroup.pop(group)
 
     for group, packages in packagesOfGroup.items():
         if len(packages) > 0:

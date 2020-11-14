@@ -1,3 +1,7 @@
+## UNRELEASED
+
+Add the `always` attribute in verbose settings.
+
 ## 0.2.4
 
 The description of pacwatch is slightly modified.
