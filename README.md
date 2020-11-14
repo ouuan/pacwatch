@@ -79,7 +79,6 @@ verbose: # the rules which determines which packages to be highlighted, checked 
   - regex: .* # matches all packages, which can be considered as a fallback or a default rule
     groups:
       - minor
-      - minor-two
     explicitOnly: true # this rule only applies to explicitly installed packages, not dependencies
   - regex: .*
     groups:

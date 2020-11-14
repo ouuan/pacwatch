@@ -77,7 +77,7 @@ settings = {
         },
         {
             'regex': '.*',
-            'groups': ['minor', 'minor-two'],
+            'groups': ['minor'],
             'explicitOnly': True
         },
         {
