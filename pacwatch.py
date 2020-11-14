@@ -26,7 +26,7 @@ from termcolor import colored
 from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 settingsFile = Path(user_config_dir(appname=__prog__)) / 'settings.yml'
 
@@ -58,7 +58,7 @@ settings = {
         }
     ],
     'verbose': {
-        'groups': ['major', 'major-two'],
+        'groups': ['epoch', 'major', 'major-two'],
         'extra': [
             {
                 'packages': ['linux', 'linux-lts'],

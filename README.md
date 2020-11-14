@@ -64,6 +64,7 @@ rules: # rules to determine the group of a package change, choose the first matc
       - pkgrel
 verbose: # highlight some version changes at top, one package per line with the version change
   groups: # highlight all packages of certain groups
+    - epoch
     - major
     - major-two
   extra: # extra verbose output for certain packages
