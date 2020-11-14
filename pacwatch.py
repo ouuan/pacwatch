@@ -27,10 +27,12 @@ from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
 __version__ = '0.3.2'
+__settings_version__ = 2
 
 settingsFile = Path(user_config_dir(appname=__prog__)) / 'settings.yml'
 
 settings = {
+    'settings_version': __settings_version__,
     'pacman_command': 'sudo pacman',
     'groups': [
         'epoch',
@@ -57,25 +59,31 @@ settings = {
             'parts': ['epoch', 'single', 'pkgrel']
         }
     ],
-    'verbose': {
-        'groups': ['epoch', 'major', 'major-two'],
-        'extra': [
-            {
-                'regex': 'linux(-(lts|zen|hardened))?',
-                'always': True
-            },
-            {
-                'packages': ['systemd'],
-                'groups': ['minor-two']
-            }
-        ],
-        'ignore': [
-            {
-                'regex': 'lib.+',
-                'always': True
-            }
-        ]
-    }
+    'verbose': [
+        {
+            'packages': ['linux'],
+            'regex': 'linux-(lts|zen|hardened)',
+            'allGroups': True
+        },
+        {
+            'packages': ['systemd'],
+            'groups': ['minor-two'],
+        },
+        {
+            'regex': 'lib.+',
+            'allGroups': True,
+            'no_verbose': True
+        },
+        {
+            'regex': '.*',
+            'groups': ['minor', 'minor-two'],
+            'explicitOnly': True
+        },
+        {
+            'regex': '.*',
+            'groups': ['epoch', 'major', 'major-two']
+        }
+    ]
 }
 
 
@@ -116,9 +124,21 @@ def showPackage(name, oldVersion, newVersion, verbose):
         print(f'{name}-{newVersion}', end=' ')
 
 
+explicitPackages = []
+
+
+def isExplicit(name):
+    global explicitPackages
+    if len(explicitPackages) == 0:
+        explicitPackages = pacman('-Qeq', False).split('\n')
+    return name in explicitPackages
+
+
 def matchVerboseRule(name, group, rule):
     if ('packages' in rule and name in rule['packages']) or ('regex' in rule and re.compile(rule['regex']).fullmatch(name)):
-        if 'always' in rule and rule['always']:
+        if 'explicitOnly' in rule and rule['explicitOnly'] and not isExplicit(name):
+            return False
+        if 'allGroups' in rule and rule['allGroups']:
             return True
         if 'groups' in rule and group in rule['groups']:
             return True
@@ -128,16 +148,12 @@ def matchVerboseRule(name, group, rule):
 def isVerbose(name, group):
     if 'verbose' not in settings:
         return False
-    if 'extra' in settings['verbose']:
-        for rule in settings['verbose']:
-            if matchVerboseRule(name, group, rule):
-                return True
-    if 'ignore' in settings['verbose']:
-        for rule in settings['ignore']:
-            if matchVerboseRule(name, group, rule):
+    for rule in settings['verbose']:
+        if matchVerboseRule(name, group, rule):
+            if 'no_verbose' in rule and rule['no_verbose']:
                 return False
-    if 'groups' in settings['verbose'] and group in settings['verbose']['groups']:
-        return True
+            else:
+                return True
     return False
 
 
@@ -166,6 +182,12 @@ if __name__ == "__main__":
         subprocess.run(f'{os.getenv("EDITOR")} {settingsFile}', shell=True)
 
     if parserResult.reset or parserResult.edit:
+        quit()
+
+    if 'settings_version' not in settings or settings['settings_version'] != __settings_version__:
+        print(f'''Incompatible changes of the settings detected.
+Please manually update the settings or reset the settings to default.
+You can use `{__prog__} --edit` or `{__prog__} --reset` to help you.''')
         quit()
 
     pacman('-Sy', True)

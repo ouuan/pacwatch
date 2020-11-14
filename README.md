@@ -30,6 +30,7 @@ The settings are stored in `~/.config/pacwatch/settings.yml`.
 The structure is:
 
 ```yml
+settings_version: 2 # the version of the setting, used to detect incompatible changes
 pacman_command: sudo pacman # for example, you can use "yay" instead
 groups: # groups of package version changes, the output will be in the same order
   - epoch
@@ -62,19 +63,26 @@ rules: # rules to determine the group of a package change, choose the first matc
       - epoch
       - single
       - pkgrel
-verbose: # highlight some version changes at top, one package per line with the version change
-  groups: # highlight all packages of certain groups
-    - epoch
-    - major
-    - major-two
-  extra: # extra verbose output for certain packages
-    - regex: linux(-(lts|zen|hardened))? # the packages which match this regex use this rule
-      always: true # always use verbose output for these packages
-    - packages: # the packages in this array use this rule
-        - systemd
-      groups: # if the changes of the packages are in these groups, use verbose output
-        - minor-two
-  ignore: # ignore verbose output for certain packages
-    - regex: lib.+
-      always: true
+verbose: # the rules which determines which packages to be highlighted, checked one by one from top to bottom
+  - packages: # these packages match this rule
+      - linux
+    regex: linux-(lts|zen|hardened) # the packages which fully matches this regex also match this rule
+    allGroups: true # no matter what group the matching packages are in, they use verbose output
+  - packages:
+      - systemd
+    groups: # only if a mathcing package is in these groups, it uses verbose output
+      - minor-two
+  - regex: lib.+
+    allGroups: true
+    no_verbose: true # the opposite of other rules: it prevents the packages it applies to using verbose output
+  - regex: .* # matches all packages, which can be considered as a fallback or a default rule
+    groups:
+      - minor
+      - minor-two
+    explicitOnly: true # this rule only applies to explicitly installed packages, not dependencies
+  - regex: .*
+    groups:
+      - epoch
+      - major
+      - major-two
 ```
