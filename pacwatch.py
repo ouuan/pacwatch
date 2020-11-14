@@ -209,6 +209,8 @@ def main():
     packagesOfGroup[None] = []
 
     for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
+        if line == '':
+            continue
         pkgName, pkgVer = line.split(' ')
         if pkgName not in oldVersion:
             showPackage(pkgName, 'not installed', pkgVer, True)

@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Fix the error when there's no available update.
+
 ## 0.4.0
 
 -   Support `no_verbose` and `regex` in the verbose rules. (#4 and #5)
