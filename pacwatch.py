@@ -158,7 +158,7 @@ def isVerbose(name, group):
     return False
 
 
-def main():
+def init():
     global settings
 
     parser = argparse.ArgumentParser(
@@ -193,6 +193,8 @@ If you haven't modified the settings, you can simply run {colored(f'{__prog__} -
 If you want to keep the current settings, you can refer to {__url__} and run {colored(f'{__prog__} --edit', 'cyan')} to manually update the settings.''')
         quit()
 
+
+def main():
     pacman('-Sy', True)
 
     oldVersion = {}
@@ -234,4 +236,5 @@ If you want to keep the current settings, you can refer to {__url__} and run {co
 
 
 if __name__ == "__main__":
+    init()
     main()
