@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Change `$pkgver-pacwatch.py` to `pacwatch-$pkgver.py`.
+
 ## 0.3.1
 
 Specify pkgver in the source file name in PKGBUILD to make it unique.
