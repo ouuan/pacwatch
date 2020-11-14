@@ -1,3 +1,7 @@
+## 0.2.4
+
+The description of pacwatch is slightly modified.
+
 ## 0.2.3
 
 Fixed the default settings where "epoch" was not in the verbose groups.
