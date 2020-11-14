@@ -2,11 +2,19 @@
 
 **pacwatch** is a utility which helps you watch important package updates in the [pacman](https://www.archlinux.org/pacman/) package manager.
 
+[![AUR version](https://img.shields.io/aur/version/pacwatch)](https://aur.archlinux.org/packages/pacwatch/)
+
 ![screenshot](screenshot.png)
+
+## Installation
+
+```sh
+yay -S pacwatch
+```
 
 ## Usage
 
-Simply run `python pacwatch.py`.
+Simply run `python pacwatch.py`, or `pacwatch` if you have installed it via AUR.
 
 ### Arguments
 
