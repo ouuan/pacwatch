@@ -27,6 +27,7 @@ from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
 __version__ = '0.3.2'
+__url__ = 'https://github.com/ouuan/pacwatch'
 __settings_version__ = 2
 
 settingsFile = Path(user_config_dir(appname=__prog__)) / 'settings.yml'
@@ -160,7 +161,7 @@ def isVerbose(name, group):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog=__prog__,
-        description=f'{__prog__} is a pacman wrapper which helps you watch important package updates. Source code at https://github.com/ouuan/pacwatch.')
+        description=f'{__prog__} is a pacman wrapper which helps you watch important package updates. Source code at {__url__}.')
     parser.add_argument('--reset', action='store_true',
                         help='reset settings to default')
     parser.add_argument('-e', '--edit', action='store_true',
@@ -185,9 +186,9 @@ if __name__ == "__main__":
         quit()
 
     if 'settings_version' not in settings or settings['settings_version'] != __settings_version__:
-        print(f'''Incompatible changes of the settings detected.
-Please manually update the settings or reset the settings to default.
-You can use `{__prog__} --edit` or `{__prog__} --reset` to help you.''')
+        print(f'''{colored("WARN", "red")} Incompatible changes of the settings detected.
+If you haven't modified the settings, you can simply run {colored(f'{__prog__} --reset', 'cyan')} to reset settings to default.
+If you want to keep the current settings, you can refer to {__url__} and run {colored(f'{__prog__} --edit', 'cyan')} to manually update the settings.''')
         quit()
 
     pacman('-Sy', True)
