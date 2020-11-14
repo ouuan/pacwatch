@@ -94,9 +94,9 @@ def saveSettings():
         yaml.safe_dump(settings, f, sort_keys=False)
 
 
-def pacman(args: str, display: bool, noConfirm: bool = True):
+def pacman(args: str, display: bool, noConfirm: bool = True, check: bool = True):
     p = subprocess.run(f"{settings['pacman_command']} {'--noconfirm' if noConfirm else ''} {'--color=always' if display else ''} {args}",
-                       capture_output=not display, check=noConfirm, shell=True)
+                       capture_output=not display, check=check, shell=True)
     if not display:
         return p.stdout.decode().strip()
 
@@ -206,15 +206,9 @@ If you want to keep the current settings, you can refer to {__url__} and run {co
 
     for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
         pkgName, pkgVer = line.split(' ')
-        if pkgName in oldVersion:
-            oldVer = oldVersion[pkgName]
-        else:
-            oldName = pacman(f'-Qq {pkgName}', False)
-            if oldName not in oldVersion:
-                print(
-                    f'{colored("WARN", "red")} Failed to find the update-available package {colored(pkgName, "cyan")} in the installed packages')
-                continue
-            oldVer = oldVersion[oldName]
+        if pkgName not in oldVersion:
+            showPackage(pkgName, 'not installed', pkgVer, True)
+            continue
         newVersion[pkgName] = pkgVer
         group = getGroup(oldVersion[pkgName], newVersion[pkgName])
         if isVerbose(pkgName, group):
@@ -234,4 +228,4 @@ If you want to keep the current settings, you can refer to {__url__} and run {co
                     package, oldVersion[package], newVersion[package], False)
             print()
 
-    pacman('-Su', True, False)
+    pacman('-Su', True, False, False)
