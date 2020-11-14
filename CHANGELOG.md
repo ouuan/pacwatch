@@ -1,9 +1,11 @@
 ## UNRELEASED
 
+## 0.4.0
+
 -   Support `no_verbose` and `regex` in the verbose rules. (#4 and #5)
 -   Support `explicitOnly` in the verbose rules. (#6)
 -   Restructure the verbose rules.
--   Handle package rename.
+-   Handle new packages.
 
 ## 0.3.2
 
