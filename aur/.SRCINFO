@@ -8,7 +8,7 @@ pkgbase = pacwatch
 	depends = python-yaml
 	depends = python-appdirs
 	depends = python-termcolor
-	source = https://github.com/ouuan/pacwatch/raw/%version%/pacwatch.py
+	source = %version%-pacwatch.py::https://github.com/ouuan/pacwatch/raw/%version%/pacwatch.py
 	sha256sums = %sha256sums%
 
 pkgname = pacwatch

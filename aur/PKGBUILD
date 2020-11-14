@@ -12,9 +12,9 @@ depends=(
   'python-appdirs'
   'python-termcolor'
 )
-source=("https://github.com/ouuan/pacwatch/raw/$pkgver/pacwatch.py")
+source=("$pkgver-pacwatch.py::https://github.com/ouuan/pacwatch/raw/$pkgver/pacwatch.py")
 sha256sums=(%sha256sums%)
 
 package() {
-    install -Dm755 pacwatch.py "$pkgdir"/usr/bin/$pkgname
+    install -Dm755 "$pkgver-pacwatch.py" "$pkgdir/usr/bin/$pkgname"
 }
