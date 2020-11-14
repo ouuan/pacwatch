@@ -54,7 +54,7 @@ jobs:
         with:
           target: "run"
           pkgname: "pacwatch"
-          command: "pacwatch"
+          command: "yes | pacwatch"
 
       - name: Clone AUR and update
         run: |
