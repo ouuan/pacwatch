@@ -97,7 +97,7 @@ def pacman(args: str, display: bool, noConfirm: bool = True):
     p = subprocess.run(f"{settings['pacman_command']} {'--noconfirm' if noConfirm else ''} {'--color=always' if display else ''} {args}",
                        capture_output=not display, check=noConfirm, shell=True)
     if not display:
-        return p.stdout.decode()
+        return p.stdout.decode().strip()
 
 
 def getGroup(old: str, new: str):
@@ -194,8 +194,6 @@ You can use `{__prog__} --edit` or `{__prog__} --reset` to help you.''')
 
     oldVersion = {}
     for line in pacman('-Q', False).split('\n'):
-        if len(line) <= 1:
-            continue
         pkgName, pkgVer = line.split(' ')
         oldVersion[pkgName] = pkgVer
 
@@ -206,9 +204,16 @@ You can use `{__prog__} --edit` or `{__prog__} --reset` to help you.''')
     packagesOfGroup[None] = []
 
     for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
-        if len(line) <= 1:
-            continue
         pkgName, pkgVer = line.split(' ')
+        if pkgName in oldVersion:
+            oldVer = oldVersion[pkgName]
+        else:
+            oldName = pacman(f'-Qq {pkgName}', False)
+            if oldName not in oldVersion:
+                print(
+                    f'{colored("WARN", "red")} Failed to find the update-available package {colored(pkgName, "cyan")} in the installed packages')
+                continue
+            oldVer = oldVersion[oldName]
         newVersion[pkgName] = pkgVer
         group = getGroup(oldVersion[pkgName], newVersion[pkgName])
         if isVerbose(pkgName, group):
