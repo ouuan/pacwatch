@@ -61,12 +61,18 @@ settings = {
         'groups': ['epoch', 'major', 'major-two'],
         'extra': [
             {
-                'packages': ['linux', 'linux-lts'],
+                'regex': 'linux(-(lts|zen|hardened))?',
                 'always': True
             },
             {
                 'packages': ['systemd'],
                 'groups': ['minor-two']
+            }
+        ],
+        'ignore': [
+            {
+                'regex': 'lib.+',
+                'always': True
             }
         ]
     }
@@ -99,10 +105,7 @@ def getGroup(old: str, new: str):
                     return group
 
 
-def showPackage(name, oldVersion, newVersion, verbose, showed):
-    if name in showed:
-        return
-    showed[name] = True
+def showPackage(name, oldVersion, newVersion, verbose):
     if verbose:
         lcp = 0  # longest common prefix
         while lcp + 1 < len(oldVersion) and lcp + 1 < len(newVersion) and oldVersion[lcp] == newVersion[lcp]:
@@ -111,6 +114,31 @@ def showPackage(name, oldVersion, newVersion, verbose, showed):
             f'{name}: {oldVersion[:lcp]}{colored(oldVersion[lcp:], "red")} -> {newVersion[:lcp]}{colored(newVersion[lcp:], "green")}')
     else:
         print(f'{name}-{newVersion}', end=' ')
+
+
+def matchVerboseRule(name, group, rule):
+    if ('packages' in rule and name in rule['packages']) or ('regex' in rule and re.compile(rule['regex']).fullmatch(name)):
+        if 'always' in rule and rule['always']:
+            return True
+        if 'groups' in rule and group in rule['groups']:
+            return True
+    return False
+
+
+def isVerbose(name, group):
+    if 'verbose' not in settings:
+        return False
+    if 'extra' in settings['verbose']:
+        for rule in settings['verbose']:
+            if matchVerboseRule(name, group, rule):
+                return True
+    if 'ignore' in settings['verbose']:
+        for rule in settings['ignore']:
+            if matchVerboseRule(name, group, rule):
+                return False
+    if 'groups' in settings['verbose'] and group in settings['verbose']['groups']:
+        return True
+    return False
 
 
 if __name__ == "__main__":
@@ -150,52 +178,32 @@ if __name__ == "__main__":
         oldVersion[pkgName] = pkgVer
 
     newVersion = {}
-    groupOfPkg = {}
-    for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
-        if len(line) <= 1:
-            continue
-        pkgName, pkgVer = line.split(' ')
-        newVersion[pkgName] = pkgVer
-        groupOfPkg[pkgName] = getGroup(oldVersion[pkgName], pkgVer)
-
-    showed = {}
-
-    if 'verbose' in settings and 'extra' in settings['verbose']:
-        for rule in settings['verbose']['extra']:
-            for package in rule['packages']:
-                if package not in groupOfPkg:
-                    continue
-                if ('always' in rule and rule['always']) or ('groups' in rule and groupOfPkg[package] in rule['groups']):
-                    showPackage(
-                        package, oldVersion[package], newVersion[package], True, showed)
-
     packagesOfGroup = {}
     for group in settings['groups']:
         packagesOfGroup[group] = []
     packagesOfGroup[None] = []
 
-    for package, group in groupOfPkg.items():
-        if not package in showed:
-            packagesOfGroup[group].append(package)
-
-    for packages in packagesOfGroup.values():
-        packages.sort()
-
-    if 'verbose' in settings and 'groups' in settings['verbose']:
-        for group in settings['verbose']['groups']:
-            for package in packagesOfGroup[group]:
-                showPackage(
-                    package, oldVersion[package], newVersion[package], True, showed)
-            packagesOfGroup.pop(group)
+    for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
+        if len(line) <= 1:
+            continue
+        pkgName, pkgVer = line.split(' ')
+        newVersion[pkgName] = pkgVer
+        group = getGroup(oldVersion[pkgName], newVersion[pkgName])
+        if isVerbose(pkgName, group):
+            showPackage(pkgName, oldVersion[pkgName],
+                        newVersion[pkgName], True)
+        else:
+            packagesOfGroup[group].append(pkgName)
 
     for group, packages in packagesOfGroup.items():
+        packages.sort()
         if len(packages) > 0:
             if group == None:
                 group = 'unknown'
             print(f'{colored(f"{group} ({len(packages)})", "magenta")}', end=' ')
             for package in packages:
                 showPackage(
-                    package, oldVersion[package], newVersion[package], False, showed)
+                    package, oldVersion[package], newVersion[package], False)
             print()
 
     pacman('-Su', True, False)

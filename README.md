@@ -68,12 +68,13 @@ verbose: # highlight some version changes at top, one package per line with the 
     - major
     - major-two
   extra: # extra verbose output for certain packages
-    - packages: # the pacakges of a verbose rule
-        - linux
-        - linux-lts
+    - regex: linux(-(lts|zen|hardened))? # the packages which match this regex use this rule
       always: true # always use verbose output for these packages
-    - packages:
+    - packages: # the packages in this array use this rule
         - systemd
-      groups:
-        - minor-two # if the changes of the packages are in these groups, use verbose output
+      groups: # if the changes of the packages are in these groups, use verbose output
+        - minor-two
+  ignore: # ignore verbose output for certain packages
+    - regex: lib.+
+      always: true
 ```

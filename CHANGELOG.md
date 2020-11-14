@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Support `verbose.ignore` and `verbose.(extra|ignore)[].regex`. (#4 and #5)
+
 ## 0.3.2
 
 Change `$pkgver-pacwatch.py` to `pacwatch-$pkgver.py`.
