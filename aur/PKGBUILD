@@ -3,7 +3,7 @@
 pkgname=pacwatch
 pkgver=%version%
 pkgrel=1
-pkgdesc='A utility which helps you watch important package updates in pacman'
+pkgdesc='A pacman wrapper which helps you watch important package updates'
 arch=('any')
 url="https://github.com/ouuan/pacwatch"
 license=('Apache')

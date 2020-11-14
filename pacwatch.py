@@ -112,7 +112,7 @@ def showPackage(name, oldVersion, newVersion, verbose, showed):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog=__prog__,
-        description=f'{__prog__} is a utility which helps you watch important package updates in the pacman package manager. Source code at https://github.com/ouuan/pacwatch.')
+        description=f'{__prog__} is a pacman wrapper which helps you watch important package updates. Source code at https://github.com/ouuan/pacwatch.')
     parser.add_argument('--reset', action='store_true',
                         help='reset settings to default')
     parser.add_argument('-e', '--edit', action='store_true',

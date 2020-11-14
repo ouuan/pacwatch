@@ -1,6 +1,6 @@
 # pacwatch
 
-**pacwatch** is a utility which helps you watch important package updates in the [pacman](https://www.archlinux.org/pacman/) package manager.
+**pacwatch** is a [pacman](https://www.archlinux.org/pacman/) wrapper which helps you watch important package updates.
 
 [![AUR version](https://img.shields.io/aur/version/pacwatch)](https://aur.archlinux.org/packages/pacwatch/)
 
