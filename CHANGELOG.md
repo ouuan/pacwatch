@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 0.3.0
+
 Add the `always` attribute in verbose settings.
 
 ## 0.2.4
