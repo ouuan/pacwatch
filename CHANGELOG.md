@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 0.4.2
+
 Update the default settings to identify more version tags.
 
 ## 0.4.1
