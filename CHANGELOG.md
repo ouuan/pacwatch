@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 0.4.1
+
 Fix the error when there's no available update.
 
 ## 0.4.0
