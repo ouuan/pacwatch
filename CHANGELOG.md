@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 1.0.0
+
 Make not installed packages configurable.
 
 ## 0.4.2
