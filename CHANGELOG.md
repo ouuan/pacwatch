@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Make not installed packages configurable.
+
 ## 0.4.2
 
 Update the default settings to identify more version tags.

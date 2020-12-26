@@ -62,9 +62,13 @@ settings = {
     ],
     'verbose': [
         {
+            'regex': '.*',
+            'groups': ['not-installed'],
+        },
+        {
             'packages': ['linux'],
             'regex': 'linux-(lts|zen|hardened)',
-            'allGroups': True
+            'allGroups': True,
         },
         {
             'packages': ['systemd'],
@@ -73,16 +77,16 @@ settings = {
         {
             'regex': 'lib.+',
             'allGroups': True,
-            'no_verbose': True
+            'no_verbose': True,
         },
         {
             'regex': '.*',
             'groups': ['minor'],
-            'explicitOnly': True
+            'explicitOnly': True,
         },
         {
             'regex': '.*',
-            'groups': ['epoch', 'major', 'major-two']
+            'groups': ['epoch', 'major', 'major-two'],
         }
     ]
 }
@@ -102,6 +106,8 @@ def pacman(args: str, display: bool, noConfirm: bool = True, check: bool = True)
 
 
 def getGroup(old: str, new: str):
+    if old == 'not installed':
+        return 'not-installed'
     for rule in settings['rules']:
         regex = re.compile(rule['regex'])
         oldMatch = regex.fullmatch(old)
@@ -207,14 +213,14 @@ def main():
     for group in settings['groups']:
         packagesOfGroup[group] = []
     packagesOfGroup[None] = []
+    packagesOfGroup['not-installed'] = []
 
     for line in pacman('-Sup --print-format "%n %v"', False).split('\n'):
         if line == '':
             continue
         pkgName, pkgVer = line.split(' ')
         if pkgName not in oldVersion:
-            showPackage(pkgName, 'not installed', pkgVer, True)
-            continue
+            oldVersion[pkgName] = 'not installed'
         newVersion[pkgName] = pkgVer
         group = getGroup(oldVersion[pkgName], newVersion[pkgName])
         if isVerbose(pkgName, group):

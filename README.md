@@ -65,6 +65,9 @@ rules: # rules to determine the group of a package change, choose the first matc
       - identifier
       - pkgrel
 verbose: # the rules which determines which packages to be highlighted, checked one by one from top to bottom
+  - regex: .*
+    groups:
+    - not-installed # match all newly installed packages (they are usually new dependencies)
   - packages: # these packages match this rule
       - linux
     regex: linux-(lts|zen|hardened) # the packages which fully matches this regex also match this rule
