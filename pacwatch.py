@@ -244,5 +244,8 @@ def main():
 
 
 if __name__ == "__main__":
-    init()
-    main()
+    try:
+        init()
+        main()
+    except KeyboardInterrupt:
+        pass

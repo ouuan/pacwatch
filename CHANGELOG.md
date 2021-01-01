@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+Catch KeyboardInterrupt and don't show the error message.
+
 ## 1.0.0
 
 Make not installed packages configurable.
