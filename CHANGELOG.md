@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 1.0.1
+
 Catch KeyboardInterrupt and don't show the error message.
 
 ## 1.0.0
