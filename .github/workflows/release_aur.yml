@@ -33,34 +33,19 @@ jobs:
       - name: Update files
         id: update-files
         run: |
-          mv aur pacwatch
-          sed -i "s/%version%/${GITHUB_REF/refs\/tags\//}/g" pacwatch/PKGBUILD pacwatch/.SRCINFO
-          sed -i "s/%sha256sums%/$(shasum -a256 pacwatch.py | cut -d' ' -f1)/g" pacwatch/PKGBUILD pacwatch/.SRCINFO
+          sed -i "s/%version%/${GITHUB_REF/refs\/tags\//}/g" aur/PKGBUILD
+          sed -i "s/%sha256sums%/$(shasum -a256 pacwatch.py | cut -d' ' -f1)/g" aur/PKGBUILD
 
       - name: Check PKGBUILD
-        uses: 2m/arch-pkgbuild-builder@v1.16
+        uses: ouuan/pkgbuild-action@master
         with:
-          target: "pkgbuild"
-          pkgname: "pacwatch"
-
-      - name: Check .SRCINFO
-        uses: 2m/arch-pkgbuild-builder@v1.16
-        with:
-          target: "srcinfo"
-          pkgname: "pacwatch"
-
-      - name: Run pacwatch
-        uses: 2m/arch-pkgbuild-builder@v1.16
-        with:
-          target: "run"
-          pkgname: "pacwatch"
-          command: "yes | pacwatch"
+          path: aur
 
       - name: Clone AUR and update
         run: |
           git clone ssh://aur@aur.archlinux.org/pacwatch.git ../aur
           rm ../aur/* || true
-          cp pacwatch/PKGBUILD pacwatch/.SRCINFO ../aur
+          cp aur/PKGBUILD ../aur
           cd ../aur
           git config user.name "Yufan You"
           git config user.email "ouuansteve@gmail.com"
