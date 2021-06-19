@@ -38,19 +38,19 @@ jobs:
           sed -i "s/%sha256sums%/$(shasum -a256 pacwatch.py | cut -d' ' -f1)/g" pacwatch/PKGBUILD pacwatch/.SRCINFO
 
       - name: Check PKGBUILD
-        uses: 2m/arch-pkgbuild-builder@v1.16
+        uses: 2m/arch-pkgbuild-builder@v1.17
         with:
           target: "pkgbuild"
           pkgname: "pacwatch"
 
       - name: Check .SRCINFO
-        uses: 2m/arch-pkgbuild-builder@v1.16
+        uses: 2m/arch-pkgbuild-builder@v1.17
         with:
           target: "srcinfo"
           pkgname: "pacwatch"
 
       - name: Run pacwatch
-        uses: 2m/arch-pkgbuild-builder@v1.16
+        uses: 2m/arch-pkgbuild-builder@v1.17
         with:
           target: "run"
           pkgname: "pacwatch"
