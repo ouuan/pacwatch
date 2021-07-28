@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 1.1.0
+
 Add `-p,--pacman_command` options so that you can toggle between `sudo pacman` and an AUR helper without modifying the settings.
 
 ## 1.0.1

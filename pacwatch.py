@@ -26,7 +26,7 @@ from termcolor import colored
 from appdirs import user_config_dir
 
 __prog__ = 'pacwatch'
-__version__ = '1.0.1'
+__version__ = '1.1.0'
 __url__ = 'https://github.com/ouuan/pacwatch'
 __settings_version__ = 2
 
