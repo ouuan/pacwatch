@@ -174,6 +174,7 @@ def init():
                         help='reset settings to default')
     parser.add_argument('-e', '--edit', action='store_true',
                         help='edit the settings in $EDITOR')
+    parser.add_argument('-p', '--pacman_command', help='override the pacman_command in the settings')
     parser.add_argument('-v', '--version', action='version',
                         version=f'%(prog)s {__version__}')
     parserResult = parser.parse_args()
@@ -186,6 +187,9 @@ def init():
                 settings = yaml.safe_load(f)
         except FileNotFoundError:
             saveSettings()
+
+    if parserResult.pacman_command:
+        settings['pacman_command'] = parserResult.pacman_command
 
     if parserResult.edit:
         subprocess.run(f'{os.getenv("EDITOR")} {settingsFile}', shell=True)
