@@ -99,10 +99,18 @@ def saveSettings():
 
 
 def pacman(args: str, display: bool, noConfirm: bool = True, check: bool = True):
-    p = subprocess.run(f"{settings['pacman_command']} {'--noconfirm' if noConfirm else ''} {'--color=always' if display else ''} {args}",
+    try:
+        p = subprocess.run(f"{settings['pacman_command']} {'--noconfirm' if noConfirm else ''} {'--color=always' if display else ''} {args}",
                        capture_output=not display, check=check, shell=True)
-    if not display:
-        return p.stdout.decode().strip()
+        if not display:
+            return p.stdout.decode().strip()
+    except subprocess.CalledProcessError as e:
+        print('\n--- pacman error ---\n')
+        print('exit code: {}'.format(e.returncode))
+        print('stderr: {}'.format(e.stderr.decode()))
+        print('stdout: {}'.format(e.output.decode()))
+        print('\n--- pacman error ---\n')
+        raise e
 
 
 def getGroup(old: str, new: str):
