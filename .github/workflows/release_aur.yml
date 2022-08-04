@@ -44,8 +44,10 @@ jobs:
       - name: Clone AUR and update
         run: |
           git clone ssh://aur@aur.archlinux.org/pacwatch.git ../aur
-          rm ../aur/* ../aur/.* || true
-          cp aur/* aur/.* ../aur
+          shopt -s dotglob
+          shopt -s extglob
+          rm ../aur/!(.git|.|..) || true
+          cp -r aur/*  ../aur
           cd ../aur
           git config user.name "Yufan You"
           git config user.email "ouuansteve@gmail.com"
