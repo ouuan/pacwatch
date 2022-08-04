@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 1.1.1
+
 Show pacman output on error like broken dependencies.
 
 ## 1.1.0
