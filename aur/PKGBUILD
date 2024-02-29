@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc='A pacman wrapper which helps you watch important package updates'
 arch=('any')
 url="https://github.com/ouuan/$pkgname"
-license=('Apache')
+license=('Apache-2.0')
 depends=(
   'python-yaml'
   'python-appdirs'
