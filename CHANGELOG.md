@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 1.1.2
+
+Use `/usr/bin/python3` instead of `/usr/bin/env python3` to run it. This prevents using pyenv where the dependencies might be missing.
+
 ## 1.1.1
 
 Show pacman output on error like broken dependencies.
