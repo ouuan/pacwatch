@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 1.2.0
+
+Group highlighted packages that share the same old and new versions.
+
 ## 1.1.2
 
 Use `/usr/bin/python3` instead of `/usr/bin/env python3` to run it. This prevents using pyenv where the dependencies might be missing.
