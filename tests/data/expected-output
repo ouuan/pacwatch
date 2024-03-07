@@ -1,66 +1,38 @@
-apparmor: [31m2.13.4-6[0m -> [32m3.0.0-2[0m
-appimagelauncher: 2.[31m1.4-1[0m -> 2.[32m2.0-1[0m
-js78: [31mnot installed[0m -> [32m78.4.0-1[0m
-bluedevil: 1:5.[31m19.5-1[0m -> 1:5.[32m20.2-1[0m
-asciidoc: [31mnot installed[0m -> [32m9.0.3-1[0m
-dhcpcd: 9.[31m2.0-1[0m -> 9.[32m3.1-1[0m
-tracker3: [31mnot installed[0m -> [32m3.0.1-1[0m
-libcloudproviders: [31mnot installed[0m -> [32m0.3.1-2[0m
-firefox: 8[31m1.0.2-1[0m -> 8[32m2.0.3-0.1[0m
-fwupd: 1.[31m4.6-1[0m -> 1.[32m5.0-1[0m
-gvfs: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-gvfs-afc: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-gvfs-gphoto2: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-gvfs-mtp: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-gvfs-nfs: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-gvfs-smb: 1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m
-iproute2: 5.[31m8.0-1[0m -> 5.[32m9.0-1[0m
-kde-gtk-config: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-milou: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kscreenlocker: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-alsa-card-profiles: [31mnot installed[0m -> [32m13.99.3-1[0m
-libqaccessibilityclient: [31mnot installed[0m -> [32m0.4.1-2[0m
-kwin: 5.[31m19.5-2[0m -> 5.[32m20.2-1[0m
-plasma-workspace: 5.[31m19.5-1.2[0m -> 5.[32m20.2-1[0m
-kdeplasma-addons: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kgamma5: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-khotkeys: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kimageformats: 5.7[31m4.0-1[0m -> 5.7[32m5.0-1[0m
-systemsettings: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kinfocenter: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kmenuedit: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kscreen: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-ksshaskpass: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-ksysguard: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kwallet-pam: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kwayland-integration: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-kwrited: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-lib32-libunistring: [31mnot installed[0m -> [32m0.9.10-1[0m
-lib32-libidn2: [31mnot installed[0m -> [32m2.3.0-1[0m
-lib32-openssl: [31mnot installed[0m -> [32m1:1.1.1.h-1[0m
-lib32-libssh2: [31mnot installed[0m -> [32m1.9.0-1[0m
-lib32-e2fsprogs: [31mnot installed[0m -> [32m1.45.6-1[0m
-lib32-libldap: [31mnot installed[0m -> [32m2.4.53-1[0m
-lib32-keyutils: [31mnot installed[0m -> [32m1.6.3-1[0m
-lib32-krb5: [31mnot installed[0m -> [32m1.18.2-1[0m
-lib32-libpsl: [31mnot installed[0m -> [32m0.21.1-1[0m
-lib32-curl: [31mnot installed[0m -> [32m7.73.0-1[0m
-mesa-vdpau: 20.[31m1.8-1[0m -> 20.[32m2.1-1[0m
-mpd: 0.2[31m1.26-1[0m -> 0.2[32m2.2-1[0m
-oxygen: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-oxygen-icons: 1:5.7[31m4.0-1[0m -> 1:5.7[32m5.0-1[0m
-partitionmanager: 4.[31m1.0-1[0m -> 4.[32m2.0-1[0m
-plasma-desktop: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-plasma-nm: 5.[31m19.5-1.1[0m -> 5.[32m20.2-1[0m
-plasma-pa: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-plasma-workspace-wallpapers: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-powerdevil: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-qbittorrent: 4.[31m2.5-1[0m -> 4.[32m3.0-1[0m
-samba: 4.1[31m2.6-1[0m -> 4.1[32m3.1-1[0m
-sddm-kcm: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
-vulkan-intel: 20.[31m1.8-1[0m -> 20.[32m2.1-1[0m
-vulkan-radeon: 20.[31m1.8-1[0m -> 20.[32m2.1-1[0m
-xdg-desktop-portal-kde: 5.[31m19.5-1[0m -> 5.[32m20.2-1[0m
+    0.2[31m1.26-1[0m -> 0.2[32m2.2-1[0m     : mpd
+      1.[31m4.6-1[0m -> 1.[32m5.0-1[0m      : fwupd
+     1.4[31m4.1-4[0m -> 1.4[32m6.1-1[0m     : gvfs, gvfs-afc, gvfs-gphoto2, gvfs-mtp, gvfs-nfs, gvfs-smb
+   1:5.[31m19.5-1[0m -> 1:5.[32m20.2-1[0m   : bluedevil
+   1:5.7[31m4.0-1[0m -> 1:5.7[32m5.0-1[0m   : oxygen-icons
+      2.[31m1.4-1[0m -> 2.[32m2.0-1[0m      : appimagelauncher
+     [31m2.13.4-6[0m -> [32m3.0.0-2[0m      : apparmor
+     20.[31m1.8-1[0m -> 20.[32m2.1-1[0m     : mesa-vdpau, vulkan-intel, vulkan-radeon
+      4.[31m1.0-1[0m -> 4.[32m2.0-1[0m      : partitionmanager
+     4.1[31m2.6-1[0m -> 4.1[32m3.1-1[0m     : samba
+      4.[31m2.5-1[0m -> 4.[32m3.0-1[0m      : qbittorrent
+     5.[31m19.5-1[0m -> 5.[32m20.2-1[0m     : kde-gtk-config, kdeplasma-addons, kgamma5, khotkeys, kinfocenter, kmenuedit, kscreen, kscreenlocker, ksshaskpass, ksysguard, kwallet-pam, kwayland-integration, kwrited, milou, oxygen, plasma-desktop, plasma-pa, plasma-workspace-wallpapers, powerdevil, sddm-kcm, systemsettings, xdg-desktop-portal-kde
+   5.[31m19.5-1.1[0m -> 5.[32m20.2-1[0m     : plasma-nm
+   5.[31m19.5-1.2[0m -> 5.[32m20.2-1[0m     : plasma-workspace
+     5.[31m19.5-2[0m -> 5.[32m20.2-1[0m     : kwin
+     5.7[31m4.0-1[0m -> 5.7[32m5.0-1[0m     : kimageformats
+      5.[31m8.0-1[0m -> 5.[32m9.0-1[0m      : iproute2
+     8[31m1.0.2-1[0m -> 8[32m2.0.3-0.1[0m   : firefox
+      9.[31m2.0-1[0m -> 9.[32m3.1-1[0m      : dhcpcd
+[31mnot installed[0m -> [32m0.21.1-1[0m     : lib32-libpsl
+[31mnot installed[0m -> [32m0.3.1-2[0m      : libcloudproviders
+[31mnot installed[0m -> [32m0.4.1-2[0m      : libqaccessibilityclient
+[31mnot installed[0m -> [32m0.9.10-1[0m     : lib32-libunistring
+[31mnot installed[0m -> [32m1.18.2-1[0m     : lib32-krb5
+[31mnot installed[0m -> [32m1.45.6-1[0m     : lib32-e2fsprogs
+[31mnot installed[0m -> [32m1.6.3-1[0m      : lib32-keyutils
+[31mnot installed[0m -> [32m1.9.0-1[0m      : lib32-libssh2
+[31mnot installed[0m -> [32m13.99.3-1[0m    : alsa-card-profiles
+[31mnot installed[0m -> [32m1:1.1.1.h-1[0m  : lib32-openssl
+[31mnot installed[0m -> [32m2.3.0-1[0m      : lib32-libidn2
+[31mnot installed[0m -> [32m2.4.53-1[0m     : lib32-libldap
+[31mnot installed[0m -> [32m3.0.1-1[0m      : tracker3
+[31mnot installed[0m -> [32m7.73.0-1[0m     : lib32-curl
+[31mnot installed[0m -> [32m78.4.0-1[0m     : js78
+[31mnot installed[0m -> [32m9.0.3-1[0m      : asciidoc
 [35mminor (112)[0m adwaita-icon-theme-3.38.0-1 at-spi2-atk-2.38.0-1 at-spi2-core-2.38.0-1 attica-5.75.0-1 baloo-5.75.0-1 bluez-qt-5.75.0-1 breeze-5.20.2-1 breeze-icons-5.75.0-1 curl-7.73.0-1 faad2-2.10.0-1 frameworkintegration-5.75.0-1 fuse-common-3.10.0-1 fuse3-3.10.0-1 fzf-0.24.1-1 git-2.29.2-1 kactivities-5.75.0-1 kactivities-stats-5.75.0-1 kactivitymanagerd-5.20.2-1 karchive-5.75.0-1 kauth-5.75.0-1 kbookmarks-5.75.0-1 kcmutils-5.75.0-1 kcodecs-5.75.0-1 kcompletion-5.75.0-1 kconfig-5.75.0-1 kconfigwidgets-5.75.0-1 kcontacts-1:5.75.0-1 kcoreaddons-5.75.0-1 kcrash-5.75.0-1 kdbusaddons-5.75.0-1 kde-cli-tools-5.20.2-1 kdeclarative-5.75.0-1 kdecoration-5.20.2-1 kded-5.75.0-1 kdelibs4support-5.75.0-1 kdesu-5.75.0-1 kdnssd-5.75.0-1 kdoctools-5.75.0-1 kemoticons-5.75.0-1 kfilemetadata-5.75.0-1 kglobalaccel-5.75.0-1 kguiaddons-5.75.0-1 kholidays-1:5.75.0-1 khtml-5.75.0-1 ki18n-5.75.0-1 kiconthemes-5.75.0-1 kidletime-5.75.0-1 kinit-5.75.0-1 kio-5.75.0-2 kirigami2-5.75.0-1 kitemmodels-5.75.0-1 kitemviews-5.75.0-1 kjobwidgets-5.75.0-1 kjs-5.75.0-1 knetattach-5.20.2-1 knewstuff-5.75.0-1 knotifications-5.75.0-2 knotifyconfig-5.75.0-1 kpackage-5.75.0-1 kparts-5.75.0-1 kpeople-5.75.0-1 kpmcore-4.2.0-1 kpty-5.75.0-1 kquickcharts-5.75.0-1 krunner-5.75.0-1 kservice-5.75.0-1 ktexteditor-5.75.0-2 ktextwidgets-5.75.0-1 kunitconversion-5.75.0-1 kwallet-5.75.0-1 kwayland-5.75.0-1 kwayland-server-5.20.2-1 kwidgetsaddons-5.75.0-1 kwindowsystem-5.75.0-1 kxmlgui-5.75.0-1 ldb-1:2.2.0-1 lib32-libva-mesa-driver-20.2.1-1 lib32-mesa-20.2.1-1 lib32-mesa-vdpau-20.2.1-1 lib32-vulkan-intel-20.2.1-1 lib32-vulkan-radeon-20.2.1-1 libass-0.15.0-2 libevdev-1.10.0-1 libgit2-1:1.1.0-1 libimagequant-2.13.0-1 libkscreen-5.20.2-1 libksysguard-5.20.2-1 libqalculate-3.14.0-1 librsvg-2:2.50.1-1 libsoup-2.72.0+5+g0b094bff-3 libupnp-1.14.0-1 libva-mesa-driver-20.2.1-1 libzip-1.7.3-1 mesa-20.2.1-1 modemmanager-qt-5.75.0-1 networkmanager-qt-5.75.0-1 plasma-framework-5.75.0-1 plasma-integration-5.20.2-1 polkit-kde-agent-5.20.2-1 poppler-20.10.0-1 poppler-glib-20.10.0-1 poppler-qt5-20.10.0-1 prison-5.75.0-1 purpose-5.75.0-1 python-cairo-1.20.0-1 python-gobject-3.38.0-1 qqc2-desktop-style-5.75.0-1 smbclient-4.13.1-1 solid-5.75.0-1 sonnet-5.75.0-1 syntax-highlighting-5.75.0-1 threadweaver-5.75.0-1 
 [35mminor-two (36)[0m ca-certificates-mozilla-3.58-1 cpupower-5.9-1 dmidecode-3.3-1 game-devices-udev-0.10-1 gcr-3.38-1 grep-3.5-1 grub-theme-live-common-20.2-9 grub-theme-live-manjaro-20.2-9 grub-theme-manjaro-20.2-9 iw-5.9-1 lib32-libcap-2.44-1 lib32-libelf-0.181-1 lib32-libpulse-13.99.3-1 lib32-nss-3.58-1 libcap-2.44-1 libcap-ng-0.8-1 libpulse-13.99.3-1 manjaro-release-20.2pre-1 mhwd-nvidia-455xx-455.38-1 nano-5.3-1 nss-3.58-1 openssh-8.4p1-2 perl-file-mimeinfo-0.30-1 perl-html-parser-3.75-1 perl-io-html-1.004-1 polkit-0.118-1 pulseaudio-13.99.3-1 pulseaudio-bluetooth-13.99.3-1 pulseaudio-equalizer-13.99.3-1 pulseaudio-jack-13.99.3-1 pulseaudio-lirc-13.99.3-1 pulseaudio-zeroconf-13.99.3-1 snapd-2.47.1-1 soundtouch-2.2-1 xkeyboard-config-2.31-1 zensu-0.3-1 
 [35msingle (13)[0m amd-ucode-20201023.r1747.dae4b4c-1 android-udev-20201003-1 archlinux-keyring-20201028-1 gsfonts-20200910-1 iana-etc-20201012-1 kdsoap-ws-discovery-client-git20200927-1 linux-firmware-20201023.r1747.dae4b4c-1 manjaro-keyring-20201030-1 manjaro-system-20201014-1 mkinitcpio-29-1.0 ndctl-70.1-1 re2-1:20201001-1 tzdata-2020d-1 

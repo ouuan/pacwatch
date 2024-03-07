@@ -1,3 +1,4 @@
+import os
 import sys
 import argparse
 import pacwatch
@@ -5,6 +6,8 @@ from io import StringIO
 from pathlib import Path
 
 expected_output = Path('tests') / 'data' / 'expected-output'
+
+os.environ['FORCE_COLOR'] = '1'
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

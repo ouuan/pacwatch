@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-   Copyright 2020-2021 Yufan You
+   Copyright 2020-2024 Yufan You
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -133,8 +133,9 @@ def showPackage(name, oldVersion, newVersion, verbose):
         lcp = 0  # longest common prefix
         while lcp + 1 < len(oldVersion) and lcp + 1 < len(newVersion) and oldVersion[lcp] == newVersion[lcp]:
             lcp += 1
-        print(
-            f'{name}: {oldVersion[:lcp]}{colored(oldVersion[lcp:], "red")} -> {newVersion[:lcp]}{colored(newVersion[lcp:], "green")}')
+        oldFormatted = f'{oldVersion[:lcp]}{colored(oldVersion[lcp:], "red")}'.rjust(22)
+        newFormatted = f'{newVersion[:lcp]}{colored(newVersion[lcp:], "green")}'.ljust(22)
+        print(f'{oldFormatted} -> {newFormatted}: {name}')
     else:
         print(f'{name}-{newVersion}', end=' ')
 
@@ -221,6 +222,7 @@ def main():
         oldVersion[pkgName] = pkgVer
 
     newVersion = {}
+    verbosePackagesOfVersion = {}
     packagesOfGroup = {}
     for group in settings['groups']:
         packagesOfGroup[group] = []
@@ -236,10 +238,15 @@ def main():
         newVersion[pkgName] = pkgVer
         group = getGroup(oldVersion[pkgName], newVersion[pkgName])
         if isVerbose(pkgName, group):
-            showPackage(pkgName, oldVersion[pkgName],
-                        newVersion[pkgName], True)
+            key = oldVersion[pkgName], newVersion[pkgName]
+            if not key in verbosePackagesOfVersion:
+                verbosePackagesOfVersion[key] = []
+            verbosePackagesOfVersion[key].append(pkgName)
         else:
             packagesOfGroup[group].append(pkgName)
+
+    for (oldVer, newVer), packages in sorted(verbosePackagesOfVersion.items()):
+        showPackage(', '.join(sorted(packages)), oldVer, newVer, True)
 
     for group, packages in packagesOfGroup.items():
         packages.sort()
