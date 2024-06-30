@@ -107,8 +107,14 @@ def pacman(args: str, display: bool, noConfirm: bool = True, check: bool = True)
     except subprocess.CalledProcessError as e:
         print('\n--- pacman error ---\n')
         print('exit code: {}'.format(e.returncode))
-        print('stderr: {}'.format(e.stderr.decode()))
-        print('stdout: {}'.format(e.output.decode()))
+        try:
+            print('stderr: {}'.format(e.stderr.decode()))
+        except:
+            pass
+        try:
+            print('stdout: {}'.format(e.output.decode()))
+        except:
+            pass
         print('\n--- pacman error ---\n')
         raise e
 
