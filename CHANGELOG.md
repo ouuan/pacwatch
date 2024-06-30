@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 1.2.1
+
+Add error handling for displaying pacman errors.
+
 ## 1.2.0
 
 Group highlighted packages that share the same old and new versions.
