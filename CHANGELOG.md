@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 1.2.2
+
+Depend on the maintained fork `platformdirs` instead of the deprecated `appdirs`.
+
 ## 1.2.1
 
 Add error handling for displaying pacman errors.
