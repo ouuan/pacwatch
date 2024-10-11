@@ -23,7 +23,7 @@ import argparse
 import subprocess
 from pathlib import Path
 from termcolor import colored
-from appdirs import user_config_dir
+from platformdirs import user_config_dir
 
 __prog__ = 'pacwatch'
 __version__ = '1.2.1'
